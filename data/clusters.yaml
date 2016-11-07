@@ -1,0 +1,35 @@
+# The key entries match the GES_FLD value, and *all* constraints for a cluster
+# must be met in order for it to be considered a member.
+
+M15:
+    VRAD: [-1000, -80]
+M67:
+    VRAD: [30, 40]
+NGC104:
+    VRAD: [-1000, 1000]
+NGC1851:
+    VRAD: [300, 1000]
+NGC2243:
+    VRAD: [55, 65]
+NGC2516:
+    VRAD: [22, 26]
+NGC2547:
+    VRAD: [10, 14]
+NGC2808:
+    VRAD: [90, 120]
+NGC3532:
+    VRAD: [0, 10]
+NGC4372:
+    VRAD: [60, 90]
+NGC4815:
+    VRAD: [-35, -20]
+NGC4833:
+    VRAD: [150, 1000]
+NGC5927:
+    VRAD: [-115, -90]
+NGC6633:
+    VRAD: [-1000, 1000]
+NGC6705:
+    VRAD: [30, 42]
+NGC6752:
+    VRAD: [-40, 0]
