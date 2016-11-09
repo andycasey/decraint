@@ -47,6 +47,12 @@ for ges_fld, rules in cluster_rules.items():
     assert match.sum() > 0, "No stars matched to {}".format(ges_fld)
     print(ges_fld, match.sum())
 
+# Flag other clusters so that they don't get used as 'FIELD' stars.
+match = (data["MEMBERSHIP"] == default_membership) * (data["GES_TYPE"] == "MW_CL")
+data["MEMBERSHIP"][match] = "OTHER"
+
+raise a
+
 # Some requirements for usefulness:
 feature_columns = ("MG1", "TI2", "FEH")
 for feature_column in feature_columns:

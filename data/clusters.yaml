@@ -1,12 +1,19 @@
 # The key entries match the GES_FLD value, and *all* constraints for a cluster
 # must be met in order for it to be considered a member.
 
+M2:
+    FEH: [-2, -1]
 M15:
     VRAD: [-1000, -80]
 M67:
     VRAD: [30, 40]
 NGC104:
-    VRAD: [-1000, 1000]
+    VRAD: [-1000, 10]
+    FEH: [-1, -0.4]
+NGC362:
+    VRAD: [200, 1000]
+NGC1904:
+    VRAD: [175, 1000]
 NGC1851:
     VRAD: [300, 1000]
 NGC2243:
@@ -27,8 +34,9 @@ NGC4833:
     VRAD: [150, 1000]
 NGC5927:
     VRAD: [-115, -90]
-NGC6633:
-    VRAD: [-1000, 1000]
+    FEH: [-0.6, -0.2]
+#NGC6633:
+#    VRAD: [-1000, 1000]
 NGC6705:
     VRAD: [30, 42]
 NGC6752:
