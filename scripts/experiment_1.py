@@ -33,7 +33,7 @@ catalog = Table.read("data/catalog.fits")
 # There are 2961 stars with all of these abundances.
 # Of them, 356 are cluster members and the rest are field stars.
 
-predictors = ("RA", "DEC")
+predictors = ("RA", "DEC", "VEL")
 
 #("FE1", "MG1", "TI1", "SI1", "CA1", "AL1", "CR1", "MN1", "NI1", "CO1", "BA2")
 
@@ -53,7 +53,7 @@ N = len(set(catalog["group"]))
 for prior in (1e-4, 1e-6, 1e-8, 1e-2, 1, 10, 100, 10000, 1e5, 1e6, 1e7):
 
     realisations = {}
-    for n in range(1, N + 1):
+    for n in range(10, N + 1):
 
         print("Running experiment with N = {}".format(n))
 
@@ -61,7 +61,7 @@ for prior in (1e-4, 1e-6, 1e-8, 1e-2, 1, 10, 100, 10000, 1e5, 1e6, 1e7):
         for m in range(M):
 
             # Get cluster indices
-            cluster_indices = np.random.randint(0, high=N, size=n)
+            cluster_indices = np.random.choice(range(N), size=n, replace=False)
             match = np.in1d(catalog["group"], cluster_indices)
 
             # Draw from the abundances for the same number of stars in those clusters
@@ -93,7 +93,6 @@ for prior in (1e-4, 1e-6, 1e-8, 1e-2, 1, 10, 100, 10000, 1e5, 1e6, 1e7):
             realisations[n].append(n_inferred)
             print(n, n_inferred)
 
-
     x = np.array(realisations.keys())
     y = np.array([realisations[k] for k in x])
 
@@ -108,7 +107,7 @@ for prior in (1e-4, 1e-6, 1e-8, 1e-2, 1, 10, 100, 10000, 1e5, 1e6, 1e7):
 
     ax.set_title(prior)
 
-    fig.savefig("scripts/hyper-parameter-search-full-pos-{}.png".format(prior))
+    fig.savefig("scripts/hyper-parameter-search-full-{}.png".format(prior))
 
 
 raise a
