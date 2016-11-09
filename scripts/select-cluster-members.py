@@ -47,9 +47,20 @@ for ges_fld, rules in cluster_rules.items():
     assert match.sum() > 0, "No stars matched to {}".format(ges_fld)
     print(ges_fld, match.sum())
 
-# Flag other clusters so that they don't get used as 'FIELD' stars.
+# Remove stars that are in a cluster that we didn't select.
 match = (data["MEMBERSHIP"] == default_membership) * (data["GES_TYPE"] == "MW_CL")
-data["MEMBERSHIP"][match] = "OTHER"
+data = data[~match]
+
+# Assign membership integers.
+data["group"] = -1 * np.ones(len(data), dtype=int)
+data["group"][data["MEMBERSHIP"] == default_membership] = -1
+
+for i, name in enumerate(set(data["MEMBERSHIP"]).difference([default_membership])):
+    data["group"][data["MEMBERSHIP"] == name] = i
+
+
+data.write("data/catalog.fits", overwrite=True)
+
 
 raise a
 
